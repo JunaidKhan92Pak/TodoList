@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0%;
+    margin: 0%;
+}
+
+.body {
+    /* background-image: linear-gradient(to right, #142f5e 40%, #142f5e 0%, #2a5298 100%);  */
+    background: linear-gradient(to right, #283E51, #4B79A1);
+}
+
+.navbar {
+    width: 100%;
+    height: 150px;
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.navbar h1 {
+    font-size: 4rem;
+    color: white;
+    font-family: 'Acme', sans-serif;
+
+}
+
+.navbar h1 span {
+    font-size: 4rem;
+    color: #336ac9
+}
+
+.modesBox {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: row-reverse;
+}
+
+.darkmode {
+    color: #223244;
+}
+
+.lightmode {
+    color: yellow;
+}
+
+.main {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 40px;
+}
+
+.container {
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.taskDiv {
+    width: 45%;
+    height: fit-content;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.taskSelect {
+    width: 45%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background-color: #051f4f;
+    border-radius: 0 0 0.5rem 0.5rem;
+
+}
+
+.bt {
+    border: none;
+    background-color: transparent;
+    color: #21488c;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 0.9rem;
+    padding-left: 5px;
+    font-family: 'Acme', sans-serif;
+
+
+}
+
+.bt:hover {
+    background-color: transparent;
+    color: #008cff;
+}
+
+.uncompletetask {
+    width: 47%;
+    height: fit-content;
+    box-shadow: #00000087 0px 13px 27px -5px, rgb(0 0 0 / 42%) 0px 8px 16px -8px;
+    text-align: center;
+    padding: 10px;
+    gap: 2.0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+    /* background: rgba(244, 28, 28, 0); */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(6.2px);
+
+}
+
+.uncompletetask h2 {
+    font-weight: bold;
+    font-size: 2.3rem;
+    padding: 10px;
+    text-decoration: underline;
+    font-family: 'Acme', sans-serif;
+    color: #6978b5;
+    text-transform: uppercase;
+
+}
+
+.inputbtn {
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding: 10px;
+    gap: 1rem;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+}
+
+input {
+    width: 70%;
+    height: 35px;
+    border: none;
+    padding: 10px;
+    border-radius: 0.1rem;
+}
+
+.add-Task {
+    width: 10%;
+    height: 35px;
+    font-size: 1.3rem;
+    border: none;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1.2);
+    background: linear-gradient(60deg, rgb(41, 81, 150) 0%, rgb(20, 47, 94) 83%);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: 0.5s;
+}
+
+.add-Task:hover {
+    width: 25%;
+    /* box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1.2);
+    background: linear-gradient(90deg, rgb(20, 47, 94)0%,rgb(41, 81, 150)  83%); 
+    color: rgb(68, 117, 176); */
+
+}
+
+.add-Task i {
+    transition: ease 0.5s;
+    transform: scale(1);
+}
+
+.add-Task:hover i {
+    transform: scale(0);
+    transition: ease 0.5s;
+}
+
+.add-Task span {
+    position: absolute;
+}
+
+.btnText {
+    font-size: 1.2rem;
+    font-family: 'Acme', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    color: rgb(255, 255, 255);
+    transform: scale(0);
+    transition-delay: 05s;
+    transition: ease 0.5s;
+}
+
+.add-Task:hover .btnText {
+    transform: scale(1);
+    transition-delay: 0.1s;
+}
+
+.task {
+    width: 100%;
+    height: 50px;
+    padding-left: 15px;
+    background-color: #051f4f;
+    border-bottom: 1px solid rgb(74, 119, 158);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.liTask {
+    color: #657ca3;
+    text-align: left;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 0.3rem;
+    list-style: disc;
+    padding-left: 10px;
+
+}
+
+.funcIcons {
+    display: flex;
+    gap: 1rem;
+    padding: 5px;
+}
+
+.compl {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    transition: all ease 0.5s;
+    text-decoration: line-through;
+    opacity: 60%;
+}
+
+.fa-trash,
+.fa-pen-to-square,
+.fa-check {
+    pointer-events: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.3rem;
+
+}
+
+.delBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(255, 0, 55);
+
+}
+
+.editBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 119, 255);
+}
+
+.completeBtn {
+    background-color: transparent;
+    border: none;
+    color: rgb(30, 255, 0);
+}
+
+.lightModeTask {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    border-bottom: 1px solid rgb(151, 166, 233);
+    background-color: #d0eae6;
+    transition: 0s;
+}
+
+.clearAnim {
+    border: none;
+    transform: translateY(9rem) rotateZ(30deg);
+    transition: 0.7s;
+    opacity: 0%;
+
+}
+
+.delAnim {
+    border: none;
+    transition: 0.5s;
+    transform: translate(350px, 0px);
+    opacity: 0%;
+}
+
+.lightMode {
+    background: linear-gradient(to left, #d0ebe6, #97a6e9);
+}
+
+.lightMode h2 {
+    color: #005bd1;
+}
+
+.lightMode h1 span {
+    color: #fdfdfd;
+}
+
+.lightMode h1 {
+    color: #0abaff;
+}
+
+.lightModebtn {
+    color: #fdfdfd;
+    box-shadow: #fffdfd 0px 13px 27px -5px, rgb(0 0 0 / 42%) 0px 8px 16px -8px;
+    background: linear-gradient(60deg, rgb(156, 192, 255) 0%, rgb(86, 148, 255) 83%);
+}
+
+.lightModeTaskOption {
+    background-color: #d0eae6;
+}
+
+.lightModeTaskOptionBtn {
+    color: #99daff;
+}
+
+/* For Responsiveness  we use at media*/
+@media only screen and (max-width: 920px) {
+    .navbar h1 {
+        font-size: 4rem;
+    }
+
+    .navbar h1 span {
+        font-size: 4rem;
+    }
+
+    .modesBox {
+        gap: 1rem;
+    }
+    .darkmode {
+     font-size: 20px;
+    }
+    
+    .lightmode {
+        font-size: 20px;
+    }
+    
+    .taskDiv {
+        width: 70%;
+    }
+    
+    .taskSelect {
+        width:70%;
+        height: 50px;
+    }
+    
+    .bt {
+        font-size: 1rem;
+        padding-left: 5px;
+    }
+    
+    .uncompletetask {
+        width: 75%;
+        padding: 10px;
+        gap: 1.4rem;
+    }
+    
+    .uncompletetask h2 {
+        font-size: 2rem;
+        padding: 10px; 
+    }
+    
+    .inputbtn {
+        width: 80%;
+        gap: 0.8rem;
+        /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    }
+    
+    input {
+        width: 70%;
+    }
+    
+    .add-Task {
+        width: 10%;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .add-Task:hover {
+        width: 30%;
+    }
+    
+    .btnText {
+        font-size: 16px;
+    }
+    
+    .add-Task:hover .btnText {
+        transform: scale(1);
+        transition-delay: 0.1s;
+    }
+    
+    .task {
+        height: 50px;
+    }
+    
+    .liTask {
+        padding-left: 10px;
+        font-size: 16px;
+    
+    }
+    
+    .funcIcons {
+        display: flex;
+        gap: 0.8rem;
+        padding: 3px;
+    }
+    
+    .compl {
+        height: 50px;
+    }
+    
+    .fa-trash,
+    .fa-pen-to-square,
+    .fa-check {
+        font-size: 1rem;
+        padding: 0.3rem;
+    
+    }
+    
+    .lightModeTask {
+        height: 50px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .navbar h1 {
+        font-size: 2.2rem;
+    }
+
+    .navbar h1 span {
+        font-size: 2.2rem;
+    }
+
+    .modesBox {
+        gap: 1rem;
+    }
+    .darkmode {
+     font-size: 14px;
+    }
+    
+    .lightmode {
+        font-size: 14px;
+    }
+    
+    .main {
+        width: 100%;
+        height: fit-content;
+        padding: 10px;
+    }
+    
+    .container {
+        width: 100%;
+        height: fit-content;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;  
+    }
+    
+    .taskDiv {
+        width: 100%;
+
+    }
+    
+    .taskSelect {
+        width: 100%;
+        height: 40px;
+    }
+    
+    .bt {
+        font-size: 0.8rem;
+        padding-left: 5px;
+    }
+    
+    .uncompletetask {
+        width: 100%;
+        padding: 8px;
+        gap: 1rem;
+    
+    }
+    
+    .uncompletetask h2 {
+        font-size: 1.2rem;
+    }
+    
+    .inputbtn {
+        width: 100%;
+        gap: 0.6rem;
+        /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    }
+    
+    input {
+        width: 80%;
+    }
+    
+    .add-Task {
+        width: 10%;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .add-Task:hover {
+        width: 35%;
+    }
+    
+    .btnText {
+        font-size: 12px;
+    }
+    
+    .add-Task:hover .btnText {
+        transform: scale(1);
+        transition-delay: 0.1s;
+    }
+    
+    .task {
+        height: 40px;
+    }
+    
+    .liTask {
+        padding-left: 10px;
+        font-size: 14px;
+    
+    }
+    
+    .funcIcons {
+        display: flex;
+        gap: 0.6rem;
+        padding: 3px;
+    }
+    
+    .compl {
+        height: 40px;
+    }
+    
+    .fa-trash,
+    .fa-pen-to-square,
+    .fa-check {
+        font-size: 0.9rem;
+        padding: 0.3rem;
+    
+    }
+    
+    .lightModeTask {
+        height: 40px;
+    }
+}

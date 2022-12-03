@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./icon/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Todo-List</title>
+</head>
+
+<body class="body">
+    <header>
+        <nav class="navbar">
+            <h1>Todo <span> List</span> </h1>
+            <div class="modesBox">
+                <div class="darkmode">
+                    <i class="fa-solid fa-moon fa-2x"></i>
+                </div>
+                <div class="lightmode">
+                    <i class="fa-solid fa-sun fa-2x"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="uncompletetask">
+            <h2>Add Task Here
+                <i class="fa-solid fa-circle-arrow-down fa-bounce "></i>
+            </h2>
+            <div class="inputbtn">
+                <input type="text" value="" id="inp" placeholder="Enter Your Task">
+                <button class="add-Task"> <i class="fa-solid fa-plus"></i> <span class="btnText">ADD
+                        TASK</span></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="taskDiv"></div>
+        <div class="taskSelect">
+            <div>
+                <button id="all" class="bt">All</button>
+            </div>
+            <div>
+                <button id="pending" class="bt">Pending</button>
+                <button id="complete" class="bt">Complete</button>
+            </div>
+            <div>
+                <button id="clearAll" class="bt">Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- JAVA SCRIPT  -->
+    <script>
+        let bdy = document.querySelector(".body");
+        let modeDiv = document.querySelector(".modesBox");
+        let dark = document.querySelector(".darkmode i");
+        let light = document.querySelector(".lightmode i");
+        let unComTaskText = document.querySelector(".uncompletetask h2");
+        let unComTaskBtn = document.querySelector(".uncompletetask .add-Task");
+        let inputValue = document.querySelector("input");
+        let taskDiv = document.querySelector(".taskDiv");
+        let addButton = document.querySelector(".add-Task");
+        let taskOption = document.querySelector(".taskSelect");
+        let taskOptionBt = document.querySelector(".taskSelect").childNodes;
+        let taskOptionBtn = taskOptionBt;
+        let taskArry = [];
+
+        // addEventListener 
+        addButton.addEventListener("click", addTask);
+        taskDiv.addEventListener("click", delTick);
+        taskOption.addEventListener("click", selectTask);
+        light.addEventListener("click", lightmode);
+        dark.addEventListener("click", darkmode);
+
+        // functions to Add Task and Create Elements
+        function addTask(event) {
+            if (inputValue.value) {
+                let unComTask = document.createElement("div");
+                taskDiv.appendChild(unComTask)
+                taskArry.push(unComTask)
+                if (bdy.className === "body") {
+                    unComTask.classList.add('task');
+                }
+                else {
+                    unComTask.classList.add('lightModeTask')
+                }
+                // Creating li element
+                let li = document.createElement("li")
+                li.className = "liTask";
+                li.innerHTML = inputValue.value;
+                unComTask.appendChild(li)
+
+                // Creating The Div for icons
+                let icons = document.createElement("div")
+                icons.className = "funcIcons"
+                unComTask.append(icons)
+
+                // Creating The Complete Task(Tick) Icon
+                let completeTask = document.createElement("button")
+                completeTask.innerHTML = '<i class="fa-solid fa-check "></i>';
+                completeTask.classList.add("completeBtn");
+                icons.append(completeTask)
+
+                // Creating The Edit Task Icon
+                let edit = document.createElement("button")
+                edit.innerHTML = '<i class="fa-solid fa-pen-to-square "></i>';
+                edit.className = "editBtn"
+                icons.append(edit)
+
+                // Creating The Delete Task(trash)  Icon
+                let delTask = document.createElement("button")
+                delTask.innerHTML = '<i class="fa-solid fa-trash "></i>';
+                delTask.className = "delBtn"
+                icons.append(delTask)
+                inputValue.value = "";
+            }
+        }
+        function delTick(e) {
+            let items = e.target;
+            if (items.classList[0] === "delBtn") {
+                let iconParent = items.parentElement;
+                let btnParent = iconParent.parentElement;
+                btnParent.classList.add('delAnim')
+                console.log(btnParent.className);
+                btnParent.addEventListener("transitionend", function () {
+                    btnParent.remove();
+                });
+            }
+            if (items.classList[0] === "completeBtn") {
+                let iconParent = items.parentElement;
+                let btnParent = iconParent.parentElement;
+                btnParent.classList.toggle("compl")
+
+            }
+            if (items.classList[0] === "editBtn") {
+                let iconParent = items.parentElement;
+                let btnParent = iconParent.parentElement;
+                let editData = btnParent.innerText;
+                document.getElementById("inp").value = editData;
+            }
+        }
+        function selectTask(e) {
+            let allTask = taskDiv;
+            let todo = taskDiv.childNodes;
+            todo.forEach(function (todo) {
+                switch (e.target.id) {
+                    case "all":
+                        todo.style.display = "flex"
+                        break;
+                    case "complete":
+                        if (todo.classList.contains('compl')) {
+                            todo.style.display = "flex";
+
+                        }
+                        else {
+                            todo.style.display = "none";
+                        }
+                        break;
+                    case "pending":
+                        if (!todo.classList.contains('compl')) {
+                            todo.style.display = "flex";
+                            console.log("Pending Task");
+                        }
+                        else {
+                            todo.style.display = "none";
+                        }
+                        break;
+                    case "clearAll":
+                        todo.classList.add('clearAnim');
+                        todo.addEventListener("transitionend", function () {
+                            while (allTask.hasChildNodes) {
+                                allTask.removeChild(allTask.firstChild);
+                            }
+
+                        });
+                        break;
+                }
+            });
+        }
+        // Function for Lightmode
+        function lightmode(e) {
+            bdy.classList.remove("body")
+            bdy.classList.add("lightMode")
+            modeDiv.classList.add("v")
+            unComTaskText.classList.add("lightModeh2")
+            unComTaskBtn.classList.add("lightModebtn")
+            taskOption.classList.add("lightModeTaskOption")
+            for (let i = 0; i < taskArry.length; i++) {
+                taskArry[i].classList.add("lightModeTask")
+                taskArry[i].classList.remove("task")
+
+            }
+        }
+
+        // Function for Darkmode
+        function darkmode() {
+            bdy.classList.add("body");
+            bdy.classList.remove("lightMode");
+            modeDiv.classList.remove("v")
+            unComTaskBtn.classList.remove("lightModebtn")
+            unComTaskText.classList.remove("lightModeh2")
+            taskOption.classList.remove("lightModeTaskOption")
+            for (let i = 0; i < taskArry.length; i++) {
+                taskArry[i].classList.remove("lightModeTask")
+                taskArry[i].classList.add("task")
+            }
+        }
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</body>
+
+</html>
